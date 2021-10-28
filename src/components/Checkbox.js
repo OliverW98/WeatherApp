@@ -1,7 +1,8 @@
 function GraphCheckbox(props) {
   return (
-    <label className="checkbox">
+    <label className="checkbox mr-1 ml-1">
       <input
+        className="mr-1"
         name={props.name}
         type="checkbox"
         onChange={props.onChange}

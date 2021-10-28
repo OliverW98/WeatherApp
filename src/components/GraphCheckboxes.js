@@ -1,7 +1,7 @@
 import Checkbox from "./Checkbox";
 function GraphCheckboxes(props) {
   return (
-    <div>
+    <div className="has-text-centered">
       <Checkbox
         label="Temperature"
         name="temp"
