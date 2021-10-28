@@ -100,7 +100,7 @@ function Graph(props) {
             <Line
               type="monotone"
               dataKey="feels_like"
-              stroke="#8884d8"
+              stroke="#d47dae"
               activeDot={{ r: 8 }}
             />
           ) : null}
@@ -108,7 +108,7 @@ function Graph(props) {
             <Line
               type="monotone"
               dataKey="pressure"
-              stroke="#8564d8"
+              stroke="#bc6acc"
               activeDot={{ r: 8 }}
             />
           ) : null}
@@ -116,7 +116,7 @@ function Graph(props) {
             <Line
               type="monotone"
               dataKey="humidity"
-              stroke="#8564d8"
+              stroke="#60bf63"
               activeDot={{ r: 8 }}
             />
           ) : null}
@@ -124,7 +124,7 @@ function Graph(props) {
             <Line
               type="monotone"
               dataKey="dew_point"
-              stroke="#8564d8"
+              stroke="#6897a3"
               activeDot={{ r: 8 }}
             />
           ) : null}
@@ -132,7 +132,7 @@ function Graph(props) {
             <Line
               type="monotone"
               dataKey="uvi"
-              stroke="#8564d8"
+              stroke="#cad145"
               activeDot={{ r: 8 }}
             />
           ) : null}
@@ -140,7 +140,7 @@ function Graph(props) {
             <Line
               type="monotone"
               dataKey="clouds"
-              stroke="#8564d8"
+              stroke="#96d6d4"
               activeDot={{ r: 8 }}
             />
           ) : null}
@@ -148,7 +148,7 @@ function Graph(props) {
             <Line
               type="monotone"
               dataKey="visibility"
-              stroke="#8564d8"
+              stroke="#73a5d1"
               activeDot={{ r: 8 }}
             />
           ) : null}
@@ -156,7 +156,7 @@ function Graph(props) {
             <Line
               type="monotone"
               dataKey="wind_speed"
-              stroke="#8564d8"
+              stroke="#d1a375"
               activeDot={{ r: 8 }}
             />
           ) : null}
