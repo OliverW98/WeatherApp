@@ -1,7 +1,7 @@
 import DailyBox from "./DailyBox";
 function Daily(props) {
   return (
-    <div className="columns">
+    <div className="columns is-gapless">
       <DailyBox data={props.data[0]} isUsingMetric={props.isUsingMetric} />
       <DailyBox data={props.data[1]} isUsingMetric={props.isUsingMetric} />
       <DailyBox data={props.data[2]} isUsingMetric={props.isUsingMetric} />
