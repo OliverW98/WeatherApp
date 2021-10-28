@@ -9,6 +9,12 @@ function CurrentWeather(props) {
     props.data.weather[0].icon +
     "@4x.png";
 
+  console.log(props.data.wind_deg);
+
+  const style = {
+    transform: "rotate(" + props.data.wind_deg + "deg)",
+  };
+
   return (
     <div className="container">
       <div className="columns">
@@ -34,6 +40,7 @@ function CurrentWeather(props) {
                   {props.isUsingMetric ? "°C" : "°F"}
                 </p>
                 <p className="is-size-3 has-text-right">
+                  <i className="fas fa-location-arrow rotate" style={style}></i>
                   {props.data.wind_speed} {props.isUsingMetric ? "m/s" : "mph"}
                 </p>
               </div>
