@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import GetWeatherDataImperial from "./GetWeatherDataImperial";
 import GetWeatherDataMetric from "./GetWeatherDataMetric";
-import Graph from "./components/Graph";
+import HourlyGraph from "./components/HourlyGraph";
 import Navbar from "./components/Navbar";
 import CurrentWeather from "./components/CurrentWeather";
 import Daily from "./components/Daily";
+import MinutelyGraph from "./components/MinutelyGraph";
 
 const initialWeatherData = {
   data: undefined,
@@ -18,6 +19,7 @@ function App() {
   const [isGraphDisplayed, setIsGraphDisplayed] = useState(false);
   const [isCurrentDisplayed, setIsCurrenthDisplayed] = useState(true);
   const [isDailyDisplayed, setIsDailyDisplayed] = useState(false);
+  const [isMinutelyDisplayed, setIsMinutelyDisplayed] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -48,6 +50,7 @@ function App() {
       setIsCurrenthDisplayed(true);
       setIsGraphDisplayed(false);
       setIsDailyDisplayed(false);
+      setIsMinutelyDisplayed(false);
     }
   }
 
@@ -56,6 +59,7 @@ function App() {
       setIsCurrenthDisplayed(false);
       setIsGraphDisplayed(true);
       setIsDailyDisplayed(false);
+      setIsMinutelyDisplayed(false);
     }
   }
 
@@ -64,6 +68,16 @@ function App() {
       setIsCurrenthDisplayed(false);
       setIsGraphDisplayed(false);
       setIsDailyDisplayed(true);
+      setIsMinutelyDisplayed(false);
+    }
+  }
+
+  function displayMinutely() {
+    if (isMinutelyDisplayed === false) {
+      setIsCurrenthDisplayed(false);
+      setIsGraphDisplayed(false);
+      setIsDailyDisplayed(false);
+      setIsMinutelyDisplayed(true);
     }
   }
 
@@ -94,6 +108,7 @@ function App() {
         displayCurrent={displayCurrent}
         displayGraph={displayGraph}
         displayDaily={displayDaily}
+        displayMinutely={displayMinutely}
         switchUnits={switchUnits}
         isUsingMetric={isUsingMetric}
       />
@@ -121,7 +136,10 @@ function App() {
         <div className="column"></div>
       </div>
       {isGraphDisplayed ? (
-        <Graph data={weatherData.data.hourly} isUsingMetric={isUsingMetric} />
+        <HourlyGraph
+          data={weatherData.data.hourly}
+          isUsingMetric={isUsingMetric}
+        />
       ) : null}
       {isCurrentDisplayed ? (
         <CurrentWeather
@@ -131,6 +149,12 @@ function App() {
       ) : null}
       {isDailyDisplayed ? (
         <Daily data={weatherData.data.daily} isUsingMetric={isUsingMetric} />
+      ) : null}
+      {isMinutelyDisplayed ? (
+        <MinutelyGraph
+          data={weatherData.data.minutely}
+          isUsingMetric={isUsingMetric}
+        />
       ) : null}
     </div>
   );

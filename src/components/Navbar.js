@@ -33,8 +33,11 @@ function Navbar(props) {
                 </button>
               </p>
               <p className="control">
-                <button className="button is-primary is-outlined">
-                  Minutly
+                <button
+                  className="button is-primary is-outlined"
+                  onClick={props.displayMinutely}
+                >
+                  Minutely
                 </button>
               </p>
               <p className="control">

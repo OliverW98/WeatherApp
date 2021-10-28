@@ -21,7 +21,7 @@ function Graph(props) {
   const [cloudsChecked, setClouds] = useState(false);
   const [visibilityChecked, setVisibility] = useState(false);
   const [windSpeedChecked, setWindSpeed] = useState(false);
-  
+
   var weatherData = { data: [] };
 
   props.data.map((item) => {
