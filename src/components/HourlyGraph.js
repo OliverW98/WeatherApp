@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import GraphCheckbox from "./GraphCheckbox";
+import Checkbox from "./Checkbox";
 
 function Graph(props) {
   const [tempChecked, setTemp] = useState(true);
@@ -44,32 +44,30 @@ function Graph(props) {
     });
   });
 
-  function handleTemp(event) {
-    setTemp(event.target.checked);
-  }
-  function handleFeelsLike(event) {
-    setFeelsLike(event.target.checked);
-  }
-  function handlePressure(event) {
-    setPressure(event.target.checked);
-  }
-  function handleHumidity(event) {
-    setHumidity(event.target.checked);
-  }
-  function handleDewPoint(event) {
-    setDewPoint(event.target.checked);
-  }
-  function handleUvi(event) {
-    setUvi(event.target.checked);
-  }
-  function handleClouds(event) {
-    setClouds(event.target.checked);
-  }
-  function handleVisibility(event) {
-    setVisibility(event.target.checked);
-  }
-  function handleWindSpeed(event) {
-    setWindSpeed(event.target.checked);
+  function handleChecked(event) {
+    const { name, checked } = event.target;
+
+    if (name === "temperature") {
+      setTemp(checked);
+    } else if (name === "feels_like") {
+      setFeelsLike(checked);
+    } else if (name === "feels_like") {
+      setFeelsLike(checked);
+    } else if (name === "pressure") {
+      setPressure(checked);
+    } else if (name === "humidity") {
+      setHumidity(checked);
+    } else if (name === "dew_point") {
+      setDewPoint(checked);
+    } else if (name === "uvi") {
+      setUvi(checked);
+    } else if (name === "clouds") {
+      setClouds(checked);
+    } else if (name === "visibility") {
+      setVisibility(checked);
+    } else if (name === "wind_speed") {
+      setWindSpeed(checked);
+    }
   }
   return (
     <div>
@@ -164,58 +162,58 @@ function Graph(props) {
           ) : null}
         </LineChart>
       </ResponsiveContainer>
-      <GraphCheckbox
+      <Checkbox
         label="Temperature"
         name="temp"
-        onChange={handleTemp}
+        onChange={handleChecked}
         checked={tempChecked}
       />
-      <GraphCheckbox
+      <Checkbox
         label="Feels Like"
         name="feels_like"
-        onChange={handleFeelsLike}
+        onChange={handleChecked}
         checked={feelsLikeChecked}
       />
-      <GraphCheckbox
+      <Checkbox
         label="Pressure"
         name="pressure"
-        onChange={handlePressure}
+        onChange={handleChecked}
         checked={pressureChecked}
       />
-      <GraphCheckbox
+      <Checkbox
         label="Humidity"
         name="humidity"
-        onChange={handleHumidity}
+        onChange={handleChecked}
         checked={humidityChecked}
       />
-      <GraphCheckbox
+      <Checkbox
         label="Dew Point"
         name="dew_point"
-        onChange={handleDewPoint}
+        onChange={handleChecked}
         checked={dewPointChecked}
       />
-      <GraphCheckbox
+      <Checkbox
         label="UV index"
         name="uvi"
-        onChange={handleUvi}
+        onChange={handleChecked}
         checked={uviChecked}
       />
-      <GraphCheckbox
+      <Checkbox
         label="Cloud Percentage"
         name="clouds"
-        onChange={handleClouds}
+        onChange={handleChecked}
         checked={cloudsChecked}
       />
-      <GraphCheckbox
+      <Checkbox
         label="Visibility"
         name="visibility"
-        onChange={handleVisibility}
+        onChange={handleChecked}
         checked={visibilityChecked}
       />
-      <GraphCheckbox
+      <Checkbox
         label="Wind Speed"
         name="wind_speed"
-        onChange={handleWindSpeed}
+        onChange={handleChecked}
         checked={windSpeedChecked}
       />
     </div>
