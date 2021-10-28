@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import Checkbox from "./Checkbox";
+import GraphCheckboxes from "./GraphCheckboxes";
 
 function Graph(props) {
   const [tempChecked, setTemp] = useState(true);
@@ -162,59 +162,17 @@ function Graph(props) {
           ) : null}
         </LineChart>
       </ResponsiveContainer>
-      <Checkbox
-        label="Temperature"
-        name="temp"
-        onChange={handleChecked}
-        checked={tempChecked}
-      />
-      <Checkbox
-        label="Feels Like"
-        name="feels_like"
-        onChange={handleChecked}
-        checked={feelsLikeChecked}
-      />
-      <Checkbox
-        label="Pressure"
-        name="pressure"
-        onChange={handleChecked}
-        checked={pressureChecked}
-      />
-      <Checkbox
-        label="Humidity"
-        name="humidity"
-        onChange={handleChecked}
-        checked={humidityChecked}
-      />
-      <Checkbox
-        label="Dew Point"
-        name="dew_point"
-        onChange={handleChecked}
-        checked={dewPointChecked}
-      />
-      <Checkbox
-        label="UV index"
-        name="uvi"
-        onChange={handleChecked}
-        checked={uviChecked}
-      />
-      <Checkbox
-        label="Cloud Percentage"
-        name="clouds"
-        onChange={handleChecked}
-        checked={cloudsChecked}
-      />
-      <Checkbox
-        label="Visibility"
-        name="visibility"
-        onChange={handleChecked}
-        checked={visibilityChecked}
-      />
-      <Checkbox
-        label="Wind Speed"
-        name="wind_speed"
-        onChange={handleChecked}
-        checked={windSpeedChecked}
+      <GraphCheckboxes
+        handleChecked={handleChecked}
+        tempChecked={tempChecked}
+        feelsLikeChecked={feelsLikeChecked}
+        pressureChecked={pressureChecked}
+        humidityChecked={humidityChecked}
+        dewPointChecked={dewPointChecked}
+        uviChecked={uviChecked}
+        cloudsChecked={cloudsChecked}
+        visibilityChecked={visibilityChecked}
+        windSpeedChecked={windSpeedChecked}
       />
     </div>
   );
