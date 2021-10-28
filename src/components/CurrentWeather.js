@@ -28,25 +28,23 @@ function CurrentWeather(props) {
                 </p>
               </div>
               <div className="media-content-right">
-                <p className="is-size-2 has-text-right"> {formattedTime}</p>
-                <p className="is-size-4 has-text-right">
-                  Temp : {props.data.temp.toFixed(1)}{" "}
+                <p className="is-size-1 has-text-right"> {formattedTime}</p>
+                <p className="is-size-3 has-text-right">
+                  {props.data.temp.toFixed(1)}{" "}
                   {props.isUsingMetric ? "°C" : "°F"}
                 </p>
-                <p className="is-size-4 has-text-right">
-                  Feels like : {props.data.feels_like.toFixed(1)}{" "}
-                  {props.isUsingMetric ? "°C" : "°F"}
-                </p>
-
-                <p className="is-size-4 has-text-right">
-                  Wind Speed : {props.data.wind_speed}{" "}
-                  {props.isUsingMetric ? "m/s" : "mph"}
+                <p className="is-size-3 has-text-right">
+                  {props.data.wind_speed} {props.isUsingMetric ? "m/s" : "mph"}
                 </p>
               </div>
             </div>
             <hr />
             <div className="columns">
               <div className="column">
+                <p>
+                  Feels Like : {props.data.feels_like.toFixed(1)}{" "}
+                  {props.isUsingMetric ? "°C" : "°F"}
+                </p>
                 <p>Cloudiness : {props.data.clouds}%</p>
                 <p>Humidity : {props.data.humidity}%</p>
               </div>
