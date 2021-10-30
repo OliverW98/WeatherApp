@@ -38,7 +38,10 @@ function CurrentWeather(props) {
                   {props.isUsingMetric ? "°C" : "°F"}
                 </p>
                 <p className="is-size-3 has-text-right">
-                  <i className="fas fa-location-arrow rotate" style={style}></i>
+                  <i
+                    className="fas fa-location-arrow rotate mr-3"
+                    style={style}
+                  ></i>
                   {props.data.wind_speed} {props.isUsingMetric ? "m/s" : "mph"}
                 </p>
               </div>
