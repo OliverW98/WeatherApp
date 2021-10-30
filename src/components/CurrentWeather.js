@@ -10,7 +10,7 @@ function CurrentWeather(props) {
     "@4x.png";
 
   const style = {
-    transform: "rotate(" + props.data.wind_deg + "deg)",
+    transform: "rotate(" + (props.data.wind_deg + 180) + "deg)",
   };
 
   return (
