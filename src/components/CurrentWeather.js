@@ -22,7 +22,7 @@ function CurrentWeather(props) {
             <div className="media">
               <div className="media-left">
                 <figure className="image is-128x128">
-                  <img src={iconUrl} alt="Placeholder image" />
+                  <img src={iconUrl} alt="Placeholder" />
                 </figure>
               </div>
               <div className="media-content">

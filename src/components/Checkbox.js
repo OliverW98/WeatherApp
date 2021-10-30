@@ -1,9 +1,9 @@
-function GraphCheckbox(props) {
+function CheckBox(props) {
   return (
     <label className="checkbox mr-1 ml-1">
       <input
         className="mr-1"
-        name={props.name}
+        name={props.dataKey}
         type="checkbox"
         onChange={props.onChange}
         checked={props.checked}
@@ -12,4 +12,4 @@ function GraphCheckbox(props) {
     </label>
   );
 }
-export default GraphCheckbox;
+export default CheckBox;

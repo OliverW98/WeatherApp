@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -9,73 +9,120 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import GraphCheckboxes from "./GraphCheckboxes";
+import Checkbox from "./Checkbox";
+
+const initialDataPoints = [
+  {
+    dataKey: "temperature",
+    stroke: "#8884d8",
+    checked: false,
+    label: "Temperature",
+  },
+  {
+    dataKey: "feelsLike",
+    stroke: "#d47dae",
+    checked: false,
+    label: "Feels Like",
+  },
+  {
+    dataKey: "pressure",
+    stroke: "#bc6acc",
+    checked: false,
+    label: "Pressure",
+  },
+  {
+    dataKey: "humidity",
+    stroke: "#60bf63",
+    checked: false,
+    label: "Humidity",
+  },
+  {
+    dataKey: "dewPoint",
+    stroke: "#6897a3",
+    checked: false,
+    label: "Dew Point",
+  },
+  { dataKey: "uvi", stroke: "#cad145", checked: false, label: "UVI" },
+  {
+    dataKey: "clouds",
+    stroke: "#96d6d4",
+    checked: false,
+    label: "Cloud Percentage",
+  },
+  {
+    dataKey: "visibility",
+    stroke: "#73a5d1",
+    checked: false,
+    label: "Visibility",
+  },
+  {
+    dataKey: "windSpeed",
+    stroke: "#d1a375",
+    checked: false,
+    label: "Wind Speed",
+  },
+];
 
 function Graph(props) {
-  const [tempChecked, setTemp] = useState(true);
-  const [feelsLikeChecked, setFeelsLike] = useState(false);
-  const [pressureChecked, setPressure] = useState(false);
-  const [humidityChecked, setHumidity] = useState(false);
-  const [dewPointChecked, setDewPoint] = useState(false);
-  const [uviChecked, setUvi] = useState(false);
-  const [cloudsChecked, setClouds] = useState(false);
-  const [visibilityChecked, setVisibility] = useState(false);
-  const [windSpeedChecked, setWindSpeed] = useState(false);
+  const [weatherData, setWeatherData] = useState([]);
+  const [dataPoints, setDataPoints] = useState(initialDataPoints);
 
-  var weatherData = { data: [] };
-
-  props.data.map((item) => {
-    var date = new Date(item.dt * 1000);
-    var hours = date.getHours();
-    var minutes = "0" + date.getMinutes();
-    var formattedTime = hours + ":" + minutes.substr(-2);
-
-    weatherData.data.push({
-      dt: formattedTime,
-      temperature: item.temp,
-      feels_like: item.feels_like,
-      pressure: item.pressure,
-      humidity: item.humidity,
-      dew_point: item.dew_point,
-      uvi: item.uvi,
-      clouds: item.clouds,
-      visibility: item.visibility,
-      wind_speed: item.wind_speed,
-    });
-  });
-
-  function handleChecked(event) {
+  function handleChange(event) {
     const { name, checked } = event.target;
-
-    if (name === "temperature") {
-      setTemp(checked);
-    } else if (name === "feels_like") {
-      setFeelsLike(checked);
-    } else if (name === "feels_like") {
-      setFeelsLike(checked);
-    } else if (name === "pressure") {
-      setPressure(checked);
-    } else if (name === "humidity") {
-      setHumidity(checked);
-    } else if (name === "dew_point") {
-      setDewPoint(checked);
-    } else if (name === "uvi") {
-      setUvi(checked);
-    } else if (name === "clouds") {
-      setClouds(checked);
-    } else if (name === "visibility") {
-      setVisibility(checked);
-    } else if (name === "wind_speed") {
-      setWindSpeed(checked);
-    }
+    const newDataPoints = dataPoints.map((point) => {
+      if (name === point.dataKey) {
+        return { ...point, checked: checked };
+      } else {
+        return point;
+      }
+    });
+    setDataPoints(newDataPoints);
   }
+
+  function renderLines(lines) {
+    return lines.map((line) =>
+      line.checked ? (
+        <Line
+          key={line.dataKey}
+          type="monotone"
+          dataKey={line.dataKey}
+          stroke={line.stroke}
+          activeDot={{ r: 8 }}
+        />
+      ) : null
+    );
+  }
+
+  useEffect(() => {
+    const tempWeather = props.data.map((item) => {
+      const date = new Date(item.dt * 1000);
+      const hours = date.getHours();
+      const minutes = "0" + date.getMinutes();
+      const formattedTime = hours + ":" + minutes.substr(-2);
+      return {
+        dt: formattedTime,
+        temperature: item.temp,
+        feelsLike: item.feels_like,
+        pressure: item.pressure,
+        humidity: item.humidity,
+        dewPoint: item.dew_point,
+        uvi: item.uvi,
+        clouds: item.clouds,
+        visibility: item.visibility,
+        windSpeed: item.wind_speed,
+      };
+    });
+
+    setWeatherData(tempWeather);
+  }, [props]);
+
   return (
     <div>
       <ResponsiveContainer width="100%" aspect={3}>
         <LineChart
           width={500}
           height={300}
-          data={weatherData.data}
+          data={weatherData}
           margin={{
             top: 5,
             right: 30,
@@ -88,92 +135,18 @@ function Graph(props) {
           <YAxis />
           <Tooltip />
           <Legend />
-          {tempChecked ? (
-            <Line
-              type="monotone"
-              dataKey="temperature"
-              stroke="#8884d8"
-              activeDot={{ r: 8 }}
-            />
-          ) : null}
-          {feelsLikeChecked ? (
-            <Line
-              type="monotone"
-              dataKey="feels_like"
-              stroke="#d47dae"
-              activeDot={{ r: 8 }}
-            />
-          ) : null}
-          {pressureChecked ? (
-            <Line
-              type="monotone"
-              dataKey="pressure"
-              stroke="#bc6acc"
-              activeDot={{ r: 8 }}
-            />
-          ) : null}
-          {humidityChecked ? (
-            <Line
-              type="monotone"
-              dataKey="humidity"
-              stroke="#60bf63"
-              activeDot={{ r: 8 }}
-            />
-          ) : null}
-          {dewPointChecked ? (
-            <Line
-              type="monotone"
-              dataKey="dew_point"
-              stroke="#6897a3"
-              activeDot={{ r: 8 }}
-            />
-          ) : null}
-          {uviChecked ? (
-            <Line
-              type="monotone"
-              dataKey="uvi"
-              stroke="#cad145"
-              activeDot={{ r: 8 }}
-            />
-          ) : null}
-          {cloudsChecked ? (
-            <Line
-              type="monotone"
-              dataKey="clouds"
-              stroke="#96d6d4"
-              activeDot={{ r: 8 }}
-            />
-          ) : null}
-          {visibilityChecked ? (
-            <Line
-              type="monotone"
-              dataKey="visibility"
-              stroke="#73a5d1"
-              activeDot={{ r: 8 }}
-            />
-          ) : null}
-          {windSpeedChecked ? (
-            <Line
-              type="monotone"
-              dataKey="wind_speed"
-              stroke="#d1a375"
-              activeDot={{ r: 8 }}
-            />
-          ) : null}
+          {renderLines(dataPoints)}
         </LineChart>
       </ResponsiveContainer>
-      <GraphCheckboxes
-        handleChecked={handleChecked}
-        tempChecked={tempChecked}
-        feelsLikeChecked={feelsLikeChecked}
-        pressureChecked={pressureChecked}
-        humidityChecked={humidityChecked}
-        dewPointChecked={dewPointChecked}
-        uviChecked={uviChecked}
-        cloudsChecked={cloudsChecked}
-        visibilityChecked={visibilityChecked}
-        windSpeedChecked={windSpeedChecked}
-      />
+      {dataPoints.map((point) => (
+        <Checkbox
+          key={point.dataKey}
+          dataKey={point.dataKey}
+          checked={point.checked}
+          label={point.label}
+          onChange={handleChange}
+        />
+      ))}
     </div>
   );
 }

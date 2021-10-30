@@ -14,7 +14,7 @@ function DailyBox(props) {
         <div className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={iconUrl} alt="Placeholder image" />
+              <img src={iconUrl} alt="Placeholder" />
             </figure>
           </div>
           <div className="media-content">
