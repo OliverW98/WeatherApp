@@ -14,8 +14,12 @@ const initialWeatherData = {
 };
 
 function App() {
+  const [metricData, setMetricData] = useState(initialWeatherData);
+  const [imperialData, setImperialData] = useState(initialWeatherData);
+
   const [weatherData, setWeatherData] = useState(initialWeatherData);
   const [isUsingMetric, setIsUingMertic] = useState(true);
+
   const [isGraphDisplayed, setIsGraphDisplayed] = useState(false);
   const [isCurrentDisplayed, setIsCurrenthDisplayed] = useState(true);
   const [isDailyDisplayed, setIsDailyDisplayed] = useState(false);
@@ -82,9 +86,9 @@ function App() {
   }
 
   async function switchUnits() {
-    setIsUingMertic(!isUsingMetric);
+    const tempIsUsingMetric = !isUsingMetric;
 
-    const data = isUsingMetric
+    const data = tempIsUsingMetric
       ? await GetWeatherDataMetric()
       : await GetWeatherDataImperial();
 
@@ -97,10 +101,8 @@ function App() {
 
     document.getElementById("metricButton").classList.toggle("is-primary");
     document.getElementById("metricButton").classList.toggle("is-danger");
-    console.log(isUsingMetric);
+    setIsUingMertic(!isUsingMetric);
   }
-
-  // <pre>{JSON.stringify(weatherData.data.daily, null, 2)}</pre>
 
   return (
     <div>

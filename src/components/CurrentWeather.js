@@ -9,8 +9,6 @@ function CurrentWeather(props) {
     props.data.weather[0].icon +
     "@4x.png";
 
-  console.log(props.data.wind_deg);
-
   const style = {
     transform: "rotate(" + props.data.wind_deg + "deg)",
   };
