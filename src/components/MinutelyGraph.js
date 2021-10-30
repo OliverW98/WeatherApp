@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   LineChart,
   Line,
@@ -11,26 +11,28 @@ import {
 } from "recharts";
 
 function MinutelyGraph(props) {
-  var weatherData = { data: [] };
+  const [weatherData, setWeatherData] = useState([]);
 
-  props.data.map((item) => {
-    var date = new Date(item.dt * 1000);
-    var hours = date.getHours();
-    var minutes = "0" + date.getMinutes();
-    var formattedTime = hours + ":" + minutes.substr(-2);
-
-    weatherData.data.push({
-      dt: formattedTime,
-      precipitation: item.precipitation,
+  useEffect(() => {
+    const tempWeatherData = props.data.map((item) => {
+      var date = new Date(item.dt * 1000);
+      var hours = date.getHours();
+      var minutes = "0" + date.getMinutes();
+      var formattedTime = hours + ":" + minutes.substr(-2);
+      return {
+        dt: formattedTime,
+        precipitation: item.precipitation,
+      };
     });
-  });
+    setWeatherData(tempWeatherData);
+  }, [props]);
 
   return (
     <ResponsiveContainer width="100%" aspect={3}>
       <LineChart
         width={500}
         height={300}
-        data={weatherData.data}
+        data={weatherData}
         margin={{
           top: 5,
           right: 30,
