@@ -15,7 +15,7 @@ const initialDataPoints = [
   {
     dataKey: "temperature",
     stroke: "#8884d8",
-    checked: false,
+    checked: true,
     label: "Temperature",
   },
   {
