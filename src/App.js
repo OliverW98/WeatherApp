@@ -14,9 +14,6 @@ const initialWeatherData = {
 };
 
 function App() {
-  const [metricData, setMetricData] = useState(initialWeatherData);
-  const [imperialData, setImperialData] = useState(initialWeatherData);
-
   const [weatherData, setWeatherData] = useState(initialWeatherData);
   const [isUsingMetric, setIsUingMertic] = useState(true);
 
@@ -114,7 +111,7 @@ function App() {
         switchUnits={switchUnits}
         isUsingMetric={isUsingMetric}
       />
-      <div className="columns">
+      {/* <div className="columns">
         <div className="column"></div>
         <div className="column">
           <input className="input" type="number" placeholder="Lat" />
@@ -127,7 +124,7 @@ function App() {
             <button className="button is-primary">Submit</button>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="columns">
         <div className="column"></div>
         <div className="column is-half has-text-centered">
