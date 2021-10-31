@@ -1,4 +1,14 @@
+import NavbarButton from "./NavbarButton";
 function Navbar(props) {
+  const navbarButtons = props.initialPagesDisplayed.map((page) => (
+    <NavbarButton
+      key={page.name}
+      name={page.name}
+      handleClick={props.handleClick}
+      label={page.label}
+    />
+  ));
+
   return (
     <nav className="navbar is-transparent">
       <div className="navbar-brand">
@@ -9,47 +19,12 @@ function Navbar(props) {
           height="28"
         />
       </div>
-
       <div id="navbarExampleTransparentExample" className="navbar-menu">
         <div className="navbar-start">
           <div className="navbar-item">
-            <div className="field is-grouped">
-              <p className="control">
-                <button
-                  onClick={props.displayCurrent}
-                  className="button is-primary is-outlined"
-                >
-                  Current
-                </button>
-              </p>
-              <p className="control">
-                <button
-                  className="button is-primary is-outlined"
-                  onClick={props.displayMinutely}
-                >
-                  Minutely
-                </button>
-              </p>
-              <p className="control">
-                <button
-                  onClick={props.displayGraph}
-                  className="button is-primary is-outlined"
-                >
-                  Hourly
-                </button>
-              </p>
-              <p className="control">
-                <button
-                  className="button is-primary is-outlined"
-                  onClick={props.displayDaily}
-                >
-                  Daily
-                </button>
-              </p>
-            </div>
+            <div className="field is-grouped">{navbarButtons}</div>
           </div>
         </div>
-
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="field is-grouped">

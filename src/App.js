@@ -13,14 +13,17 @@ const initialWeatherData = {
   error: false,
 };
 
+const initialPagesDisplayed = [
+  { name: "current", isDisplayed: true, label: "Current" },
+  { name: "minutely", isDisplayed: false, label: "Minutely" },
+  { name: "hourly", isDisplayed: false, label: "Hourly" },
+  { name: "daily", isDisplayed: false, label: "Daily" },
+];
+
 function App() {
   const [weatherData, setWeatherData] = useState(initialWeatherData);
   const [isUsingMetric, setIsUingMertic] = useState(true);
-
-  const [isGraphDisplayed, setIsGraphDisplayed] = useState(false);
-  const [isCurrentDisplayed, setIsCurrenthDisplayed] = useState(true);
-  const [isDailyDisplayed, setIsDailyDisplayed] = useState(false);
-  const [isMinutelyDisplayed, setIsMinutelyDisplayed] = useState(false);
+  const [pagesDisplayed, setPagesDisplayed] = useState(initialPagesDisplayed);
 
   useEffect(() => {
     const loadData = async () => {
@@ -46,40 +49,17 @@ function App() {
     return <div>Data loading...</div>;
   }
 
-  function displayCurrent() {
-    if (isCurrentDisplayed === false) {
-      setIsCurrenthDisplayed(true);
-      setIsGraphDisplayed(false);
-      setIsDailyDisplayed(false);
-      setIsMinutelyDisplayed(false);
-    }
-  }
-
-  function displayGraph() {
-    if (isGraphDisplayed === false) {
-      setIsCurrenthDisplayed(false);
-      setIsGraphDisplayed(true);
-      setIsDailyDisplayed(false);
-      setIsMinutelyDisplayed(false);
-    }
-  }
-
-  function displayDaily() {
-    if (isDailyDisplayed === false) {
-      setIsCurrenthDisplayed(false);
-      setIsGraphDisplayed(false);
-      setIsDailyDisplayed(true);
-      setIsMinutelyDisplayed(false);
-    }
-  }
-
-  function displayMinutely() {
-    if (isMinutelyDisplayed === false) {
-      setIsCurrenthDisplayed(false);
-      setIsGraphDisplayed(false);
-      setIsDailyDisplayed(false);
-      setIsMinutelyDisplayed(true);
-    }
+  function handleClick(event) {
+    const { name } = event.target;
+    const newPagesDiplayed = pagesDisplayed.map((page) => {
+      if (name === page.name) {
+        return { ...page, isDisplayed: true };
+      } else {
+        return { ...page, isDisplayed: false };
+      }
+    });
+    setPagesDisplayed(newPagesDiplayed);
+    console.log(pagesDisplayed);
   }
 
   async function switchUnits() {
@@ -104,27 +84,11 @@ function App() {
   return (
     <div>
       <Navbar
-        displayCurrent={displayCurrent}
-        displayGraph={displayGraph}
-        displayDaily={displayDaily}
-        displayMinutely={displayMinutely}
+        initialPagesDisplayed={initialPagesDisplayed}
+        handleClick={handleClick}
         switchUnits={switchUnits}
         isUsingMetric={isUsingMetric}
       />
-      {/* <div className="columns">
-        <div className="column"></div>
-        <div className="column">
-          <input className="input" type="number" placeholder="Lat" />
-        </div>
-        <div className="column">
-          <input className="input" type="number" placeholder="Long" />
-        </div>
-        <div className="column">
-          <div className="control">
-            <button className="button is-primary">Submit</button>
-          </div>
-        </div>
-      </div> */}
       <div className="columns">
         <div className="column"></div>
         <div className="column is-half has-text-centered">
@@ -134,26 +98,26 @@ function App() {
         </div>
         <div className="column"></div>
       </div>
-      {isGraphDisplayed ? (
-        <HourlyGraph
-          data={weatherData.data.hourly}
-          isUsingMetric={isUsingMetric}
-        />
-      ) : null}
-      {isCurrentDisplayed ? (
+      {pagesDisplayed[0].isDisplayed ? (
         <CurrentWeather
           data={weatherData.data.current}
           isUsingMetric={isUsingMetric}
         />
       ) : null}
-      {isDailyDisplayed ? (
-        <Daily data={weatherData.data.daily} isUsingMetric={isUsingMetric} />
-      ) : null}
-      {isMinutelyDisplayed ? (
+      {pagesDisplayed[1].isDisplayed ? (
         <MinutelyGraph
           data={weatherData.data.minutely}
           isUsingMetric={isUsingMetric}
         />
+      ) : null}
+      {pagesDisplayed[2].isDisplayed ? (
+        <HourlyGraph
+          data={weatherData.data.hourly}
+          isUsingMetric={isUsingMetric}
+        />
+      ) : null}
+      {pagesDisplayed[3].isDisplayed ? (
+        <Daily data={weatherData.data.daily} isUsingMetric={isUsingMetric} />
       ) : null}
     </div>
   );

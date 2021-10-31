@@ -49,7 +49,7 @@ function MinutelyGraph(props) {
         <Line
           type="monotone"
           dataKey="precipitation"
-          stroke="#8884d8"
+          stroke="#1019b5"
           activeDot={{ r: 8 }}
         />
       </LineChart>

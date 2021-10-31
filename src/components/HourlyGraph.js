@@ -138,15 +138,17 @@ function Graph(props) {
           {renderLines(dataPoints)}
         </LineChart>
       </ResponsiveContainer>
-      {dataPoints.map((point) => (
-        <Checkbox
-          key={point.dataKey}
-          dataKey={point.dataKey}
-          checked={point.checked}
-          label={point.label}
-          onChange={handleChange}
-        />
-      ))}
+      <p className="has-text-centered">
+        {dataPoints.map((point) => (
+          <Checkbox
+            key={point.dataKey}
+            dataKey={point.dataKey}
+            checked={point.checked}
+            label={point.label}
+            onChange={handleChange}
+          />
+        ))}
+      </p>
     </div>
   );
 }
