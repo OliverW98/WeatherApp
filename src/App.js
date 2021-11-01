@@ -59,7 +59,6 @@ function App() {
       }
     });
     setPagesDisplayed(newPagesDiplayed);
-    console.log(pagesDisplayed);
   }
 
   async function switchUnits() {
