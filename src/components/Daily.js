@@ -6,7 +6,12 @@ function Daily(props) {
 
   function handleClick(event) {
     const { id } = event.target;
-    setExtendeBox(<ExtendedDailyBox id={id} />);
+    setExtendeBox(
+      <ExtendedDailyBox
+        data={props.data[id]}
+        isUsingMetric={props.isUsingMetric}
+      />
+    );
   }
 
   return (
