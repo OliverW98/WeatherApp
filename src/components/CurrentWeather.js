@@ -13,6 +13,14 @@ function CurrentWeather(props) {
     transform: "rotate(" + (props.data.wind_deg + 180) + "deg)",
   };
 
+  function getHasRainValue() {
+    if (props.data.rain != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   return (
     <div className="container">
       <div className="columns">
@@ -55,6 +63,7 @@ function CurrentWeather(props) {
                 </p>
                 <p>Cloudiness : {props.data.clouds}%</p>
                 <p>Humidity : {props.data.humidity}%</p>
+                {getHasRainValue() ? <p>Rain : {props.data.rain} mm</p> : null}
               </div>
               <div className="column">
                 <p>UV index : {props.data.uvi}</p>

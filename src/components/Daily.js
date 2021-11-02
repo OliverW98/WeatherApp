@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import DailyBox from "./DailyBox";
-import ExtendedDailyBox from "./ExtenededDailyBox";
+import ExtDailyBox from "./ExtDailyBox";
 function Daily(props) {
   const [extendedBox, setExtendeBox] = useState(null);
 
   function handleClick(event) {
     const { id } = event.target;
     setExtendeBox(
-      <ExtendedDailyBox
-        data={props.data[id]}
-        isUsingMetric={props.isUsingMetric}
-      />
+      <ExtDailyBox data={props.data[id]} isUsingMetric={props.isUsingMetric} />
     );
   }
 
