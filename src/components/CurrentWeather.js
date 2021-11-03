@@ -1,8 +1,8 @@
 function CurrentWeather(props) {
-  var date = new Date(props.data.dt * 1000);
-  var hours = date.getHours();
-  var minutes = "0" + date.getMinutes();
-  var formattedTime = hours + ":" + minutes.substr(-2);
+  let date = new Date(props.data.dt * 1000);
+  let hours = date.getHours();
+  let minutes = "0" + date.getMinutes();
+  let formattedTime = hours + ":" + minutes.substr(-2);
 
   const iconUrl =
     "http://openweathermap.org/img/wn/" +
@@ -12,14 +12,6 @@ function CurrentWeather(props) {
   const style = {
     transform: "rotate(" + (props.data.wind_deg + 180) + "deg)",
   };
-
-  function getHasRainValue() {
-    if (props.data.rain != null) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   return (
     <div className="container">
@@ -63,7 +55,9 @@ function CurrentWeather(props) {
                 </p>
                 <p>Cloudiness : {props.data.clouds}%</p>
                 <p>Humidity : {props.data.humidity}%</p>
-                {getHasRainValue() ? <p>Rain : {props.data.rain} mm</p> : null}
+                {props.data.rain != null ? (
+                  <p>Rain : {props.data.rain} mm</p>
+                ) : null}
               </div>
               <div className="column">
                 <p>UV index : {props.data.uvi}</p>
