@@ -28,7 +28,7 @@ function MinutelyGraph(props) {
   }, [props]);
 
   return (
-    <ResponsiveContainer width="100%" aspect={3}>
+    <ResponsiveContainer width="100%" aspect={2}>
       <LineChart
         width={500}
         height={300}

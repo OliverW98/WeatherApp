@@ -29,7 +29,7 @@ function Daily(props) {
   ));
   return (
     <div>
-      <div className="columns is-gapless">{dailyBoxes}</div>
+      <div className="columns">{dailyBoxes}</div>
       {extendedBox}
     </div>
   );

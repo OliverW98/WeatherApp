@@ -118,7 +118,7 @@ function Graph(props) {
 
   return (
     <div>
-      <ResponsiveContainer width="100%" aspect={3}>
+      <ResponsiveContainer width="100%" aspect={4}>
         <LineChart
           width={500}
           height={300}

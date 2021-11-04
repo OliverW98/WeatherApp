@@ -88,20 +88,43 @@ function App() {
         switchUnits={switchUnits}
         isUsingMetric={isUsingMetric}
       />
-      <div className="columns">
-        <div className="column"></div>
-        <div className="column is-half has-text-centered">
-          <div className="content">
-            <p>Current Time Zone : {weatherData.data.timezone}</p>
+
+      <div className="container is-fluid">
+        <div className="columns">
+          <div className="column is-one-third">
+            <p className="title has-text-centered">Current Forecast</p>
+            <CurrentWeather
+              data={weatherData.data.current}
+              isUsingMetric={isUsingMetric}
+            />
+          </div>
+          <div className="column">
+            <p className="title has-text-centered">8-day Forecast</p>
+            <Daily
+              data={weatherData.data.daily}
+              isUsingMetric={isUsingMetric}
+            />
           </div>
         </div>
-        <div className="column"></div>
+        <div className="columns">
+          <div className="column is-one-third">
+            <p className="title has-text-centered">Hourly Precipitation</p>
+            <MinutelyGraph
+              data={weatherData.data.minutely}
+              isUsingMetric={isUsingMetric}
+            />
+          </div>
+          <div className="column">
+            <p className="title has-text-centered">Hourly Forecast</p>
+            <HourlyGraph
+              data={weatherData.data.hourly}
+              isUsingMetric={isUsingMetric}
+            />
+          </div>
+        </div>
       </div>
-      {pagesDisplayed[0].isDisplayed ? (
-        <CurrentWeather
-          data={weatherData.data.current}
-          isUsingMetric={isUsingMetric}
-        />
+      {/* {pagesDisplayed[0].isDisplayed ? (
+
       ) : null}
       {pagesDisplayed[1].isDisplayed ? (
         <MinutelyGraph
@@ -117,7 +140,7 @@ function App() {
       ) : null}
       {pagesDisplayed[3].isDisplayed ? (
         <Daily data={weatherData.data.daily} isUsingMetric={isUsingMetric} />
-      ) : null}
+      ) : null} */}
     </div>
   );
 }
