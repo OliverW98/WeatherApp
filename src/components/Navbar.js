@@ -1,14 +1,4 @@
-import NavbarButton from "./NavbarButton";
 function Navbar(props) {
-  const navbarButtons = props.initialPagesDisplayed.map((page) => (
-    <NavbarButton
-      key={page.name}
-      name={page.name}
-      handleClick={props.handleClick}
-      label={page.label}
-    />
-  ));
-
   return (
     <nav className="navbar is-transparent">
       <div className="navbar-brand">
@@ -20,11 +10,6 @@ function Navbar(props) {
         />
       </div>
       <div id="navbarExampleTransparentExample" className="navbar-menu">
-        <div className="navbar-start">
-          <div className="navbar-item">
-            <div className="field is-grouped">{navbarButtons}</div>
-          </div>
-        </div>
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="field is-grouped">
