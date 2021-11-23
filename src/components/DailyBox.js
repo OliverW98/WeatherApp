@@ -10,7 +10,7 @@ function DailyBox(props) {
   };
 
   const convertedDate = new Date(props.data.dt * 1000);
-  let formattedDate = dateFormat(convertedDate, "dddd dS");
+  let formattedDate = dateFormat(convertedDate, "ddd dS");
   return (
     <div className="column">
       <p className="is-size-7">{formattedDate}</p>

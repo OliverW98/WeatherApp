@@ -21,27 +21,27 @@ function ExtDailyBoxTable(props) {
         <tr>
           <th>Temperature</th>
           <td>
-            {props.temp.max.toFixed(1)}
+            {props.temp.max.toFixed(0)}
             {" " + units}
           </td>
           <td>
-            {props.temp.min.toFixed(1)}
+            {props.temp.min.toFixed(0)}
             {" " + units}
           </td>
           <td>
-            {props.temp.morn.toFixed(1)}
+            {props.temp.morn.toFixed(0)}
             {" " + units}
           </td>
           <td>
-            {props.temp.day.toFixed(1)}
+            {props.temp.day.toFixed(0)}
             {" " + units}
           </td>
           <td>
-            {props.temp.eve.toFixed(1)}
+            {props.temp.eve.toFixed(0)}
             {" " + units}
           </td>
           <td>
-            {props.temp.night.toFixed(1)}
+            {props.temp.night.toFixed(0)}
             {" " + units}
           </td>
         </tr>
@@ -50,19 +50,19 @@ function ExtDailyBoxTable(props) {
           <td></td>
           <td></td>
           <td>
-            {props.feels_like.morn.toFixed(1)}
+            {props.feels_like.morn.toFixed(0)}
             {" " + units}
           </td>
           <td>
-            {props.feels_like.day.toFixed(1)}
+            {props.feels_like.day.toFixed(0)}
             {" " + units}
           </td>
           <td>
-            {props.feels_like.eve.toFixed(1)}
+            {props.feels_like.eve.toFixed(0)}
             {" " + units}
           </td>
           <td>
-            {props.feels_like.night.toFixed(1)}
+            {props.feels_like.night.toFixed(0)}
             {" " + units}
           </td>
         </tr>

@@ -66,7 +66,7 @@ function App() {
 
       <div className="container is-fluid">
         <div className="columns is-desktop">
-          <div className="column is-one-third">
+          <div className="column is-one-third-widescreen is-half-desktop">
             <p className="title has-text-centered">Current Forecast</p>
             <CurrentWeather
               data={weatherData.data.current}
@@ -82,7 +82,7 @@ function App() {
           </div>
         </div>
         <div className="columns is-desktop">
-          <div className="column is-one-third">
+          <div className="column is-one-third-widescreen is-half-desktop">
             <p className="title has-text-centered">Hourly Precipitation</p>
             <MinutelyGraph
               data={weatherData.data.minutely}

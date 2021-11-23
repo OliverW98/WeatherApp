@@ -22,7 +22,7 @@ function ExtDailyBox(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-half">
+          <div className="column is-half-widescreen is-one-third-desktop">
             <ExtDailyBoxTable
               temp={props.data.temp}
               feels_like={props.data.feels_like}

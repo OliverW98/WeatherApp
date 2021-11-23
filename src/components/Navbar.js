@@ -1,14 +1,6 @@
 function Navbar(props) {
   return (
     <nav className="navbar is-transparent">
-      <div className="navbar-brand">
-        <img
-          src="http://openweathermap.org/img/wn/11d@4x.png"
-          alt="WeatherApp: a modern way of writing bad code"
-          width="112"
-          height="28"
-        />
-      </div>
       <div id="navbarExampleTransparentExample" className="navbar-menu">
         <div className="navbar-end">
           <div className="navbar-item">

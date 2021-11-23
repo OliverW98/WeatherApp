@@ -2,7 +2,7 @@ function ExtDailyBoxInfo(props) {
   return (
     <div className="column">
       <div className="columns">
-        <div className="column is-two-fifths">
+        <div className="column">
           <p>
             <b>pressure</b>
           </p>
@@ -28,12 +28,14 @@ function ExtDailyBoxInfo(props) {
           <p>{props.data.pressure} hPa</p>
           <p>{props.data.humidity} %</p>
           <p>
-            {props.data.dew_point.toFixed(1)}{" "}
+            {props.data.dew_point.toFixed(0)}{" "}
             {props.isUsingMetric ? "°C" : "°F"}{" "}
           </p>
           <p>{props.data.clouds} %</p>
           <p>{props.data.uvi}</p>
-          {props.data.rain != null ? <p>{props.data.rain} mm</p> : null}
+          {props.data.rain != null ? (
+            <p>{props.data.rain.toFixed(0)} mm</p>
+          ) : null}
         </div>
       </div>
     </div>
